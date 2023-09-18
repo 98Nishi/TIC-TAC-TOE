@@ -1,7 +1,10 @@
 :root {
     --yellow: #ffc107;
+    --reset: #2e00ba;
 
 }
 body {
-    background-color: #000000;
+    /* background-color: #000000; */
+    background: rgb(2,0,36);
+    background: radial-gradient(circle, #02221a 0%, #44102b 77%, #280222 97%, #4747bf 100%, #04242a 100%);
 }

@@ -1,5 +1,5 @@
 import Icon from "../Icon/Icon";
-import "./card.css";
+import "./Card.css";
 
 function Card({ onPlay, player, index, gameEnd }) {
   

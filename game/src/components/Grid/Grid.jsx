@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Card from "../card/Card";
 import isWinner from "../../helper/checkWin";
@@ -12,20 +13,20 @@ function Grid({ numberOfCards }) {
   const [winner, setWinner] = useState(null);
 
   function play(index) {
-    // console.log("move player", index);
-    if (turn == true) {
-      board[index] = "O";
-    } else {
-      board[index] = "X";
+    if (board[index] === "") {
+      board[index] = turn ? "O" : "X";
+      const win = isWinner(board, turn ? "O" : "X");
+      if (win) {
+        setWinner(win);
+        toast.success(`Congratulations ${win} wins the game!`);
+      } else if (!board.includes("")) {
+        // Check for draw when there's no winner and all cells are filled
+        setWinner("Draw");
+        toast.info("It's a draw!");
+      }
+      setBoard([...board]);
+      setTurn(!turn);
     }
-    const win = isWinner(board, turn ? "O" : "X");
-
-    if (win) {
-      setWinner(win);
-      toast.success(`Congratulation ${win} win the game`);
-    }
-    setBoard([...board]);
-    setTurn(!turn);
   }
 
   function reset() {
@@ -36,9 +37,10 @@ function Grid({ numberOfCards }) {
 
   return (
     <div className="grid-wrapper">
-      {winner && (
+       {/* Display winner or draw message along with reset button */}
+      {(winner || winner === "Draw") && (
         <>
-          <h1 className="turn-highlight">Winner is {winner}</h1>
+          <h1 className="turn-highlight">{winner === "Draw" ? "It's a Draw!" : `Winner is ${winner}`}</h1>
           <button className="reset" onClick={reset}>
             Reset
           </button>
@@ -49,7 +51,7 @@ function Grid({ numberOfCards }) {
       <h1 className="turn-highlight">Current Turn: {turn ? "O" : "X"} </h1>
       <div className="grid">
         {board.map((value, idx) => {
-          return <Card gameEnd={winner ? true : false} onPlay={play} player={value} key={idx} index={idx} />;
+          return <Card gameEnd={winner} onPlay={play} player={value} key={idx} index={idx} />;
         })}
       </div>
     </div>
@@ -57,3 +59,4 @@ function Grid({ numberOfCards }) {
 }
 
 export default Grid;
+

@@ -1,3 +1,5 @@
+
+
 // Function for checking winner
 
 function isWinner(board, symbol) {

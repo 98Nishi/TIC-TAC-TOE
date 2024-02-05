@@ -22,9 +22,9 @@
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
-  color: white;
+  color: #dfdbdb;
   border-radius: 10px;
-  box-shadow: inset 2px 2px 2px 2px #bdbdbd;
+  box-shadow: inset 1px 1px 1px 1px #bdbdbd;
   /* box-shadow: 2px 2px 2px #848484; */
   background-color: var(--reset);
   cursor: pointer;
@@ -33,5 +33,6 @@
   font-size: 18px;
 }
 .reset:hover {
-  background-color: #f86e6e;
+  background-color: #777777;
+  color:#000000
 }
